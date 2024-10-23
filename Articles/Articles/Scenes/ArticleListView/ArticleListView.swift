@@ -26,7 +26,7 @@ struct ArticleListView: View {
                             destination: ArticleDetailView(article: article)
                         ) {
                             ArticleCellView(article: article)
-                                .padding()
+//                                .padding()
                         }
                     }
                 }
