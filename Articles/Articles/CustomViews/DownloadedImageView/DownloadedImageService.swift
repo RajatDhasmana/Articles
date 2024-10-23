@@ -9,11 +9,11 @@ import Foundation
 import Combine
 import UIKit
 
-protocol ImageDownloadServiceProtocol {
+protocol DownloadedImageServiceProtocol {
     func downloadImage(url: URL) -> AnyPublisher<UIImage, ImageDownloadError>
 }
 
-struct ImageDownloadService: ImageDownloadServiceProtocol {
+struct DownloadedImageService: DownloadedImageServiceProtocol {
     func downloadImage(url: URL) -> AnyPublisher<UIImage, ImageDownloadError> {
         let urlRequest = URLRequest(url: url)
         

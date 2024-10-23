@@ -61,5 +61,5 @@ struct ArticleCellView: View {
 }
 
 #Preview {
-    ArticleCellView(article: Article(url: "", id: 0, publishedDate: "", byline: "", title: ""))
+    ArticleCellView(article: Article(url: "", id: 0, publishedDate: "", byline: "", title: "", abstract: "", media: []))
 }

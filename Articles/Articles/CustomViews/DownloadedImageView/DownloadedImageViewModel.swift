@@ -24,11 +24,11 @@ class DownloadedImageViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     private var urlStr: String?
-    private var imageDownloadService: ImageDownloadServiceProtocol
+    private var imageDownloadService: DownloadedImageServiceProtocol
     
     init(image: UIImage? = nil,
          urlStr: String? = nil,
-         imageDownloadService: ImageDownloadServiceProtocol) {
+         imageDownloadService: DownloadedImageServiceProtocol) {
         self.image = image
         self.urlStr = urlStr
         self.imageDownloadService = imageDownloadService

@@ -22,8 +22,12 @@ struct ArticleListView: View {
             } else {
                 LazyVStack(spacing: 10) {
                     ForEach(viewmodel.articleList, id: \.id) { article in
-                        ArticleCellView(article: article)
-                        .padding()
+                        NavigationLink(
+                            destination: ArticleDetailView(article: article)
+                        ) {
+                            ArticleCellView(article: article)
+                                .padding()
+                        }
                     }
                 }
             }

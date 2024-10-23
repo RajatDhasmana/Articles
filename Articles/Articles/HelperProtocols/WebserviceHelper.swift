@@ -28,7 +28,7 @@ public struct WebserviceHelper {
             }
             .decode(type: T.self, decoder: JSONDecoder())
             .mapError({ error in
-                ServiceError.notAbleToDecode
+                ServiceError(error: error)
             })
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()

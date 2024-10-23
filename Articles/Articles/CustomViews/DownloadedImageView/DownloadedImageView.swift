@@ -16,7 +16,7 @@ struct DownloadedImageView: View {
         viewmodel = DownloadedImageViewModel(
             image: image,
             urlStr: urlString,
-            imageDownloadService: ImageDownloadService())
+            imageDownloadService: DownloadedImageService())
     }
     
     var body: some View {
