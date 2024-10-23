@@ -1,6 +1,6 @@
 # Articles
 
-#  Architecture Used -> MVVM + Clean(or Onion) Architecture
+#  Architecture Used -> MVVM
 
 This project demonstrates the implementation of the **MVVM (Model-View-ViewModel)** architecture in a Swift application. The project is structured to showcase clean, modular, and testable code using the MVVM design pattern.
 
