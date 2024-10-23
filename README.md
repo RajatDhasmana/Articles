@@ -19,10 +19,14 @@ This project demonstrates the implementation of the **MVVM (Model-View-ViewModel
 This project is a NY Times Articles Viewer built in Swift, using the MVVM architecture. It fetches and displays a list of the latest articles from The New York Times using their public API. The app provides a simple and intuitive interface for users to browse trending articles and see details of individual articles.
 
 ## Technologies Used
-  **Swift**: The programming language used to build the app.  
+  **Swift**: The programming language used to build the app. 
+  
   **SwiftUI**: For building a declarative, dynamic user interface.  
+  
   **Combine**: For handling asynchronous events and API calls.  
+  
   **NY Times API**: The backend service providing the latest articles.  
+  
 
 ## Architecture Overview
 
