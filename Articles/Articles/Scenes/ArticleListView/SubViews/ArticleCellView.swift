@@ -17,9 +17,7 @@ struct ArticleCellView: View {
     
     var body: some View {
         HStack {
-            Image("")
-                .resizable()
-                .background(Color.gray)
+            DownloadedImageView(urlString: article.imageUrlStr)
                 .frame(width: 40, height: 40)
                 .clipShape(Circle())
 

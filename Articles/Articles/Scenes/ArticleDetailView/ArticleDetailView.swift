@@ -15,6 +15,7 @@ struct ArticleDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 DownloadedImageView(urlString: article.imageUrlStr)
+                    .frame(height: UIScreen.main.bounds.height * 0.3)
                 Text(article.title)
                 Text(article.abstract)
                 
