@@ -37,6 +37,7 @@
 		D65382012CC8DA1B0080060B /* KeychainManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65382002CC8DA1B0080060B /* KeychainManagerTests.swift */; };
 		D65382042CC8DA600080060B /* ArticleListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65382032CC8DA5F0080060B /* ArticleListViewModelTest.swift */; };
 		D65382062CC8DA980080060B /* ArticleListViewMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65382052CC8DA980080060B /* ArticleListViewMocks.swift */; };
+		D6D0FCF62CCA6D8500816207 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D0FCF52CCA6D8500816207 /* EmptyStateView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		D65382002CC8DA1B0080060B /* KeychainManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManagerTests.swift; sourceTree = "<group>"; };
 		D65382032CC8DA5F0080060B /* ArticleListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListViewModelTest.swift; sourceTree = "<group>"; };
 		D65382052CC8DA980080060B /* ArticleListViewMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListViewMocks.swift; sourceTree = "<group>"; };
+		D6D0FCF52CCA6D8500816207 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +234,7 @@
 		D65381DF2CC8CD930080060B /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				D6D0FCF42CCA6D7000816207 /* EmptyStateView */,
 				D65381E52CC8CE350080060B /* DownloadedImageView */,
 				D65381E02CC8CDB60080060B /* CustomNavBar.swift */,
 			);
@@ -314,6 +317,14 @@
 				D65382052CC8DA980080060B /* ArticleListViewMocks.swift */,
 			);
 			path = ArticleListViewTests;
+			sourceTree = "<group>";
+		};
+		D6D0FCF42CCA6D7000816207 /* EmptyStateView */ = {
+			isa = PBXGroup;
+			children = (
+				D6D0FCF52CCA6D8500816207 /* EmptyStateView.swift */,
+			);
+			path = EmptyStateView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -452,6 +463,7 @@
 				D65381DC2CC8CD4D0080060B /* Endpoint.swift in Sources */,
 				D65381D72CC8CCE70080060B /* ArticleCellView.swift in Sources */,
 				D65381D52CC8CCB40080060B /* ArticleListViewModel.swift in Sources */,
+				D6D0FCF62CCA6D8500816207 /* EmptyStateView.swift in Sources */,
 				D65381D92CC8CD170080060B /* ArticleListResponse.swift in Sources */,
 				D65381A12CC8CB290080060B /* ContentView.swift in Sources */,
 				D65381EE2CC8D0840080060B /* KeychainManager.swift in Sources */,

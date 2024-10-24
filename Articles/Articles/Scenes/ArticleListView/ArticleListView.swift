@@ -14,25 +14,26 @@ struct ArticleListView: View {
     var body: some View {
         
         ScrollView {
-            
-            if viewmodel.showLoader {
-                ZStack {
+            switch viewmodel.viewState {
+            case .loading:
                     ProgressView()
-                }
-            } else {
+                
+            case .noResponseReceived, .emptyData:
+                    EmptyStateView()
+                
+            case .dataReceived:
                 LazyVStack(spacing: 10) {
                     ForEach(viewmodel.articleList, id: \.id) { article in
                         NavigationLink(
                             destination: ArticleDetailView(article: article)
                         ) {
                             ArticleCellView(article: article)
-//                                .padding()
                         }
                     }
                 }
             }
         }
-        .withCustomNavBar(title: "NY Times Most Popular")
+        .withCustomNavBar(title: viewmodel.viewConstants.navTitle)
         .onAppear(perform: {
             viewmodel.perform(action: .didAppear)
         })

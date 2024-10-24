@@ -15,6 +15,14 @@ protocol DownloadedImageServiceProtocol {
 
 struct DownloadedImageService: DownloadedImageServiceProtocol {
     func downloadImage(url: URL) -> AnyPublisher<UIImage, ImageDownloadError> {
+        let cache = ImageCache.shared
+        
+        if let cachedImage = cache.object(forKey: url as NSURL) {
+            return Just(cachedImage)
+                .setFailureType(to: ImageDownloadError.self)
+                .eraseToAnyPublisher()
+        }
+
         let urlRequest = URLRequest(url: url)
         
         return URLSession.shared.dataTaskPublisher(for: urlRequest)
@@ -22,6 +30,7 @@ struct DownloadedImageService: DownloadedImageServiceProtocol {
                 guard let image = UIImage(data: data) else {
                     throw ImageDownloadError.downloadError
                 }
+                cache.setObject(image, forKey: url as NSURL)
                 return image
             }
             .mapError({ error in
@@ -44,4 +53,8 @@ enum ImageDownloadError: Error {
             return "Error while converting data to image"
         }
     }
+}
+
+class ImageCache {
+    static let shared = NSCache<NSURL, UIImage>()
 }

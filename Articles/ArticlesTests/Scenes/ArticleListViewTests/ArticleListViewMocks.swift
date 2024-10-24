@@ -27,6 +27,16 @@ extension ArticleListViewService {
                     .eraseToAnyPublisher()
             })
     }()
+    
+    static let mockEmptyResponse: Self = {
+        ArticleListViewService(
+            fetchArticles: {
+                return Just(.mockEmpty)
+                    .setFailureType(to: ServiceError.self)
+                    .eraseToAnyPublisher()
+            })
+    }()
+
 }
 
 extension Article {
@@ -39,4 +49,9 @@ extension ArticleListResponse {
     static let mock: Self = {
         return ArticleListResponse(status: "OK", copyright: "Copyright", numResults: 1, results: [.mock])
     }()
+    
+    static let mockEmpty: Self = {
+        return ArticleListResponse(status: "OK", copyright: "Copyright", numResults: 0, results: [])
+    }()
+
 }

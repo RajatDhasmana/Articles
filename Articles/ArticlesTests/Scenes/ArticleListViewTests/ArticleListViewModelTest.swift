@@ -19,19 +19,28 @@ final class ArticleListViewModelTest: XCTestCase {
         viewModel = nil
     }
 
-    func testSuccessResponseSuccess() throws {
+    func testResponseSuccess() throws {
         viewModel = ArticleListViewModel(service: ArticleListViewService.mockSuccess)
-        XCTAssertTrue(viewModel.showLoader)
+        XCTAssertEqual(viewModel.viewState, .loading)
         viewModel.perform(action: .didAppear)
-        XCTAssertFalse(viewModel.showLoader)
+        XCTAssertEqual(viewModel.viewState, .dataReceived)
         XCTAssertEqual(viewModel.articleList.count, 1)
     }
     
-    func testSuccessResponseFailure() throws {
+    func testResponseFailure() throws {
         viewModel = ArticleListViewModel(service: ArticleListViewService.mockFailure)
-        XCTAssertTrue(viewModel.showLoader)
+        XCTAssertEqual(viewModel.viewState, .loading)
         viewModel.perform(action: .didAppear)
-        XCTAssertFalse(viewModel.showLoader)
+        XCTAssertEqual(viewModel.viewState, .noResponseReceived)
         XCTAssertEqual(viewModel.articleList.count, 0)
     }
+    
+    func testEmptyResponse() throws {
+        viewModel = ArticleListViewModel(service: ArticleListViewService.mockEmptyResponse)
+        XCTAssertEqual(viewModel.viewState, .loading)
+        viewModel.perform(action: .didAppear)
+        XCTAssertEqual(viewModel.viewState, .emptyData)
+        XCTAssertEqual(viewModel.articleList.count, 0)
+    }
+
 }
