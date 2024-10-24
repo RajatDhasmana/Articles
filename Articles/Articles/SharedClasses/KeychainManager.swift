@@ -18,7 +18,6 @@ class KeychainManager {
 
 extension KeychainManager {
     
-    // Function to save data to keychain
     @discardableResult
     func save(key: String, data: Data) -> OSStatus {
         return keychainQueue.sync(flags: .barrier) {
@@ -33,7 +32,6 @@ extension KeychainManager {
         }
     }
 
-    // Function to retrieve data from keychain
     @discardableResult
     func load(key: String) -> Data? {
         return keychainQueue.sync {
@@ -53,7 +51,6 @@ extension KeychainManager {
         }
     }
     
-    // Function to delete data from keychain
     @discardableResult
     func delete(key: String) -> OSStatus {
         return keychainQueue.sync(flags: .barrier) {

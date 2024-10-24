@@ -41,7 +41,7 @@ extension ArticleListViewService {
 
 extension Article {
     static let mock: Self = {
-       return Article(url: "www.google.com", id: 1, publishedDate: "2024-10-16", byline: "by rajat", title: "rajat title", abstract: "Description", media: [])
+       return Article(url: "www.google.com", id: 1, publishedDate: "2024-10-16", byline: "by rajat", title: "article title", abstract: "Description", media: [])
     }()
 }
 

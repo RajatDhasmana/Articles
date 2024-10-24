@@ -17,12 +17,12 @@ class DownloadedImageViewModel: ObservableObject {
     
     // MARK: - Published variables
     
-    @Published var viewState: ViewState = .failure
+    @Published var viewState: ViewState = .loading
 
     // MARK: - Private variables
     
     private var cancellables = Set<AnyCancellable>()
-    private var urlStr: String?
+    private let urlStr: String
     private var imageDownloadService: DownloadedImageServiceProtocol
     
     init(urlStr: String,
@@ -38,13 +38,12 @@ extension DownloadedImageViewModel {
         switch action {
             
         case .didAppear:
-            guard let urlStr, let url = URL(string: urlStr) else {
+            guard let url = URL(string: urlStr) else {
                 self.viewState = .failure
                 return
             }
             imageDownloadService.downloadImage(url: url)
                 .sink { [weak self] completion in
-                    
                     switch completion {
                     case .finished:
                         break
@@ -61,7 +60,8 @@ extension DownloadedImageViewModel {
 }
 
 extension DownloadedImageViewModel {
-    enum ViewState {
+    enum ViewState: Equatable {
+        case loading
         case success(UIImage)
         case failure
     }

@@ -25,7 +25,6 @@ struct ArticleListView: View {
                 EmptyStateView(viewModel: emptyStateViewModel)
                 
             case .dataReceived(let articleList):
-                
                 ScrollView {
                     LazyVStack(spacing: 10) {
                         ForEach(articleList, id: \.id) { article in

@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - ArticleListResponse
-struct ArticleListResponse: Codable {
+struct ArticleListResponse: Decodable {
     let status, copyright: String
     let numResults: Int
     let results: [Article]
@@ -21,7 +21,7 @@ struct ArticleListResponse: Codable {
 }
 
 // MARK: - Article
-struct Article: Codable {
+struct Article: Decodable, Equatable {
     let url: String
     let id: Int
     let publishedDate: String
@@ -41,7 +41,7 @@ struct Article: Codable {
 }
 
 // MARK: - Media
-struct Media: Codable {
+struct Media: Decodable, Equatable {
     let type: MediaType
     let subtype: Subtype
     let caption, copyright: String
@@ -56,26 +56,26 @@ struct Media: Codable {
 }
 
 // MARK: - MediaMetadatum
-struct MediaMetadatum: Codable {
+struct MediaMetadatum: Decodable, Equatable {
     let url: String
     let format: Format
     let height, width: Int
 }
 
 // MARK: - Format
-enum Format: String, Codable {
+enum Format: String, Decodable {
     case mediumThreeByTwo210 = "mediumThreeByTwo210"
     case mediumThreeByTwo440 = "mediumThreeByTwo440"
     case standardThumbnail = "Standard Thumbnail"
 }
 
 // MARK: - Subtype
-enum Subtype: String, Codable {
+enum Subtype: String, Decodable {
     case empty = ""
     case photo = "photo"
 }
 
 // MARK: - MediaType
-enum MediaType: String, Codable {
+enum MediaType: String, Decodable {
     case image = "image"
 }

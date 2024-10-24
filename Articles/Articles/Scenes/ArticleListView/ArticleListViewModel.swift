@@ -16,7 +16,7 @@ internal class ArticleListViewModel: ObservableObject {
     // MARK: - Private variables
     private let service: ArticleListViewServiceProtocol
     private var cancellables = Set<AnyCancellable>()
-    var viewConstants = Constant()
+    var viewConstants = ViewConstant()
 
     init(service: ArticleListViewServiceProtocol) {
         self.service = service
@@ -45,11 +45,11 @@ extension ArticleListViewModel {
                     let errorStateViewModel = ErrorStateViewModel(error: error) {
                         self?.perform(action: .retry)
                     }
-                    self?.viewState = .failure(errorStateViewModel: errorStateViewModel)
+                    self?.viewState = .failure(errorStateViewModel)
                 }
             } receiveValue: { [weak self] articleResponse in
                 if articleResponse.results.isEmpty {
-                    let emptyStateViewModel = EmptyStateViewModel {
+                    let emptyStateViewModel = EmptyStateViewModel(emptyStateText: AppConstant.emptyDataViewText.rawValue) {
                         self?.perform(action: .retry)
                     }
                     self?.viewState = .emptyData(emptyStateViewModel)
@@ -62,9 +62,9 @@ extension ArticleListViewModel {
 }
 
 extension ArticleListViewModel {
-    enum ViewState {
+    enum ViewState: Equatable {
         case loading
-        case failure(errorStateViewModel: ErrorStateViewModel)
+        case failure(ErrorStateViewModel)
         case dataReceived([Article])
         case emptyData(EmptyStateViewModel)
     }
@@ -73,8 +73,8 @@ extension ArticleListViewModel {
         case didAppear
         case retry
     }
-    
-    struct Constant {
+        
+    struct ViewConstant {
         let navTitle = "NY Times Most Popular"
     }
 }

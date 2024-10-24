@@ -10,7 +10,7 @@ import Combine
 
 public struct WebserviceHelper {
                 
-    static func request<T: Codable>(endPoint: Endpoint) -> AnyPublisher<T, ServiceError> {
+    static func request<T: Decodable>(endPoint: Endpoint) -> AnyPublisher<T, ServiceError> {
         
         guard let url = URL(string: endPoint.fullURLStr) else {
             return Fail(error: ServiceError.invalidUrl).eraseToAnyPublisher()
@@ -35,7 +35,7 @@ public struct WebserviceHelper {
     }
 }
 
-enum ServiceError: Error {
+enum ServiceError: Error, Equatable {
     
     case notAbleToDecode
     case noResponse
@@ -73,18 +73,18 @@ enum ServiceError: Error {
     var errorDescription: String? {
         switch self {
         case .notAbleToDecode:
-            return Constant.notAbleToDecodeError.rawValue
+            return AppConstant.notAbleToDecodeError.rawValue
         case .noResponse:
-            return Constant.noResponseError.rawValue
+            return AppConstant.noResponseError.rawValue
         case .invalidUrl:
-            return Constant.invalidUrlError.rawValue
+            return AppConstant.invalidUrlError.rawValue
         case .unAuthorised:
-            return Constant.unAuthorisedError.rawValue
+            return AppConstant.unAuthorisedError.rawValue
         case .unknown(let errorStr):
             return errorStr
         }
     }
     
-    var shownError: String { Constant.shownError.rawValue }
+    var shownError: String { AppConstant.shownError.rawValue }
 }
 

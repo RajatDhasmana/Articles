@@ -26,7 +26,7 @@ extension Endpoint {
     }
     
     var apiKey: String? {
-        guard let data = KeychainManager.shared.load(key: Constant.apiKey.rawValue) else {
+        guard let data = KeychainManager.shared.load(key: AppConstant.apiKey.rawValue) else {
             return nil
         }
         return String(data: data, encoding: .utf8)

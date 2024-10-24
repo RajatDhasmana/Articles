@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Constant: String {
+enum AppConstant: String {
     case apiKey = "api_key"
     case invalidUrlError = "The URL is invalid."
     case noResponseError = "The request failed."

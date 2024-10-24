@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct EmptyStateViewModel {
-    let emptyStateText: String = Constant.emptyDataViewText.rawValue
+struct EmptyStateViewModel: Equatable {
+    let emptyStateText: String
     var retryClosure: (() -> Void)?
+    
+    static func == (lhs: EmptyStateViewModel, rhs: EmptyStateViewModel) -> Bool {
+        return lhs.emptyStateText == rhs.emptyStateText
+    }
 }

@@ -22,7 +22,7 @@ struct DownloadedImageView: View {
         ZStack {
             
             switch viewModel.viewState {
-            case .failure:
+            case .failure, .loading:
                 ProgressView()
                 
             case .success(let image):

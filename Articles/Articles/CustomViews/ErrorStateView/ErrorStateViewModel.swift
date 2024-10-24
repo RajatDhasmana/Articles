@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct ErrorStateViewModel {
+struct ErrorStateViewModel: Equatable {
+    static func == (lhs: ErrorStateViewModel, rhs: ErrorStateViewModel) -> Bool {
+        lhs.error == rhs.error
+    }
+    
     let error: ServiceError
-    var retryClosure: (() -> Void)?
+    var retryClosure: (() -> Void)? = nil
 }

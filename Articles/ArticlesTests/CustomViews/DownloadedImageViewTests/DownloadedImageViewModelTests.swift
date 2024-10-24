@@ -19,29 +19,28 @@ final class DownloadedImageViewModelTests: XCTestCase {
 
     override func tearDownWithError() throws {
         viewModel = nil
+        serviceMock = nil
     }
 
     func testImageDownloadSuccessfully() throws {
         serviceMock = ImageDownloadServiceMockSuccess()
         viewModel = DownloadedImageViewModel(urlStr: "google.com", imageDownloadService: serviceMock)
-        XCTAssertTrue(viewModel.showLoader)
+        XCTAssertEqual(viewModel.viewState, .loading)
         viewModel.perform(action: .didAppear)
-        XCTAssertFalse(viewModel.showLoader)
-        XCTAssertEqual(viewModel.image, UIImage())
+        XCTAssertEqual(viewModel.viewState, .success(UIImage()))
     }
     
     func testImageDownloadFails() throws {
         serviceMock = ImageDownloadServiceMockFailure()
         viewModel = DownloadedImageViewModel(urlStr: "google.com", imageDownloadService: serviceMock)
-        XCTAssertTrue(viewModel.showLoader)
+        XCTAssertEqual(viewModel.viewState, .loading)
         viewModel.perform(action: .didAppear)
-        XCTAssertFalse(viewModel.showLoader)
-        XCTAssertEqual(viewModel.image, nil)
+        XCTAssertEqual(viewModel.viewState, .failure)
     }
     
     func testLoaderVisibilityOnStart() {
         serviceMock = ImageDownloadServiceMockSuccess()
         viewModel = DownloadedImageViewModel(urlStr: "google.com", imageDownloadService: serviceMock)
-        XCTAssertTrue(viewModel.showLoader)
+        XCTAssertEqual(viewModel.viewState, .loading)
     }
 }

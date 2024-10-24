@@ -23,24 +23,20 @@ final class ArticleListViewModelTest: XCTestCase {
         viewModel = ArticleListViewModel(service: ArticleListViewService.mockSuccess)
         XCTAssertEqual(viewModel.viewState, .loading)
         viewModel.perform(action: .didAppear)
-        XCTAssertEqual(viewModel.viewState, .dataReceived)
-        XCTAssertEqual(viewModel.articleList.count, 1)
+        XCTAssertEqual(viewModel.viewState, .dataReceived(ArticleListResponse.mock.results))
     }
     
     func testResponseFailure() throws {
         viewModel = ArticleListViewModel(service: ArticleListViewService.mockFailure)
         XCTAssertEqual(viewModel.viewState, .loading)
         viewModel.perform(action: .didAppear)
-        XCTAssertEqual(viewModel.viewState, .noResponseReceived)
-        XCTAssertEqual(viewModel.articleList.count, 0)
+        XCTAssertEqual(viewModel.viewState, .failure(.init(error: .noResponse)))
     }
     
     func testEmptyResponse() throws {
         viewModel = ArticleListViewModel(service: ArticleListViewService.mockEmptyResponse)
         XCTAssertEqual(viewModel.viewState, .loading)
         viewModel.perform(action: .didAppear)
-        XCTAssertEqual(viewModel.viewState, .emptyData)
-        XCTAssertEqual(viewModel.articleList.count, 0)
+        XCTAssertEqual(viewModel.viewState, .emptyData(.init(emptyStateText: AppConstant.emptyDataViewText.rawValue)))
     }
-
 }

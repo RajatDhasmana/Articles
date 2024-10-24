@@ -42,5 +42,5 @@ struct EmptyStateView: View {
 }
 
 #Preview {
-    EmptyStateView(viewModel: .init())
+    EmptyStateView(viewModel: .init(emptyStateText: AppConstant.emptyDataViewText.rawValue))
 }

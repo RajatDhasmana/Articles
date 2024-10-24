@@ -27,6 +27,6 @@ extension AppDelegate {
         }
         // delete previous saved key if there is
         KeychainManager.shared.delete(key: key)
-        KeychainManager.shared.save(key: Constant.apiKey.rawValue, data: keyData)
+        KeychainManager.shared.save(key: AppConstant.apiKey.rawValue, data: keyData)
     }
 }
