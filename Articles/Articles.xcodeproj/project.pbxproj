@@ -37,7 +37,8 @@
 		D65382012CC8DA1B0080060B /* KeychainManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65382002CC8DA1B0080060B /* KeychainManagerTests.swift */; };
 		D65382042CC8DA600080060B /* ArticleListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65382032CC8DA5F0080060B /* ArticleListViewModelTest.swift */; };
 		D65382062CC8DA980080060B /* ArticleListViewMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65382052CC8DA980080060B /* ArticleListViewMocks.swift */; };
-		D6D0FCF62CCA6D8500816207 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D0FCF52CCA6D8500816207 /* EmptyStateView.swift */; };
+		D6D0FCFB2CCAD6C800816207 /* ErrorStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D0FCFA2CCAD6C800816207 /* ErrorStateView.swift */; };
+		D6D0FCFD2CCAD6E300816207 /* ErrorStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D0FCFC2CCAD6E300816207 /* ErrorStateViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,7 +92,8 @@
 		D65382002CC8DA1B0080060B /* KeychainManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManagerTests.swift; sourceTree = "<group>"; };
 		D65382032CC8DA5F0080060B /* ArticleListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListViewModelTest.swift; sourceTree = "<group>"; };
 		D65382052CC8DA980080060B /* ArticleListViewMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListViewMocks.swift; sourceTree = "<group>"; };
-		D6D0FCF52CCA6D8500816207 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		D6D0FCFA2CCAD6C800816207 /* ErrorStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorStateView.swift; sourceTree = "<group>"; };
+		D6D0FCFC2CCAD6E300816207 /* ErrorStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorStateViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,7 +236,7 @@
 		D65381DF2CC8CD930080060B /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				D6D0FCF42CCA6D7000816207 /* EmptyStateView */,
+				D6D0FCF92CCAD6B600816207 /* ErrorStateView */,
 				D65381E52CC8CE350080060B /* DownloadedImageView */,
 				D65381E02CC8CDB60080060B /* CustomNavBar.swift */,
 			);
@@ -319,12 +321,13 @@
 			path = ArticleListViewTests;
 			sourceTree = "<group>";
 		};
-		D6D0FCF42CCA6D7000816207 /* EmptyStateView */ = {
+		D6D0FCF92CCAD6B600816207 /* ErrorStateView */ = {
 			isa = PBXGroup;
 			children = (
-				D6D0FCF52CCA6D8500816207 /* EmptyStateView.swift */,
+				D6D0FCFA2CCAD6C800816207 /* ErrorStateView.swift */,
+				D6D0FCFC2CCAD6E300816207 /* ErrorStateViewModel.swift */,
 			);
-			path = EmptyStateView;
+			path = ErrorStateView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -463,12 +466,13 @@
 				D65381DC2CC8CD4D0080060B /* Endpoint.swift in Sources */,
 				D65381D72CC8CCE70080060B /* ArticleCellView.swift in Sources */,
 				D65381D52CC8CCB40080060B /* ArticleListViewModel.swift in Sources */,
-				D6D0FCF62CCA6D8500816207 /* EmptyStateView.swift in Sources */,
 				D65381D92CC8CD170080060B /* ArticleListResponse.swift in Sources */,
 				D65381A12CC8CB290080060B /* ContentView.swift in Sources */,
 				D65381EE2CC8D0840080060B /* KeychainManager.swift in Sources */,
 				D65381DE2CC8CD6D0080060B /* WebserviceHelper.swift in Sources */,
+				D6D0FCFD2CCAD6E300816207 /* ErrorStateViewModel.swift in Sources */,
 				D65381D02CC8CC0C0080060B /* ArticleListEndPoint.swift in Sources */,
+				D6D0FCFB2CCAD6C800816207 /* ErrorStateView.swift in Sources */,
 				D65381CE2CC8CBD50080060B /* ArticleListView.swift in Sources */,
 				D65381F22CC8D1280080060B /* AppDelegate.swift in Sources */,
 				D65381E72CC8CE580080060B /* DownloadedImageView.swift in Sources */,
@@ -654,6 +658,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -683,6 +688,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -9,34 +9,34 @@ import SwiftUI
 
 struct DownloadedImageView: View {
     
-    @ObservedObject private var viewmodel: DownloadedImageViewModel
+    @StateObject private var viewModel: DownloadedImageViewModel
     
-    init(image: UIImage? = nil, urlString: String? = nil) {
-        
-        viewmodel = DownloadedImageViewModel(
-            image: image,
+    init(urlString: String) {
+        _viewModel = StateObject(wrappedValue: DownloadedImageViewModel(
             urlStr: urlString,
-            imageDownloadService: DownloadedImageService())
+            imageDownloadService: DownloadedImageService()))
     }
     
     var body: some View {
         
         ZStack {
             
-            if let image = viewmodel.image {
+            switch viewModel.viewState {
+            case .failure:
+                ProgressView()
+                
+            case .success(let image):
                 Image(uiImage: image)
                     .resizable()
-            }
-            if viewmodel.showLoader {
-                ProgressView()
+                    .aspectRatio(contentMode: .fill)
             }
         }
         .onAppear {
-            viewmodel.perform(action: .didAppear)
+            viewModel.perform(action: .didAppear)
         }
     }
 }
 
 #Preview {
-    DownloadedImageView()
+    DownloadedImageView(urlString: "")
 }

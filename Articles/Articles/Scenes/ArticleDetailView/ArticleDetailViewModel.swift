@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct ArticleDetailViewModel {
+    
+    struct Constant {
+        let navTitle = "NY Times Most Popular"
+    }
+
+    let article: Article
+    var viewConstants = Constant()
+}

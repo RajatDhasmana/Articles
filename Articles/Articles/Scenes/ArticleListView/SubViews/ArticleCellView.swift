@@ -17,7 +17,7 @@ struct ArticleCellView: View {
     
     var body: some View {
         HStack {
-            DownloadedImageView(urlString: article.imageUrlStr)
+            DownloadedImageView(urlString: article.imageUrlStr ?? "")
                 .frame(width: 40, height: 40)
                 .clipShape(Circle())
 
@@ -27,7 +27,6 @@ struct ArticleCellView: View {
                     .foregroundColor(.black)
                     .lineLimit(1)
                 
-                // Author and date information
                 HStack(alignment: .bottom) {
                     Text(article.byline)
                         .font(.caption)
@@ -35,7 +34,6 @@ struct ArticleCellView: View {
                     
                     Spacer()
                     
-                    // Date information with calendar icon
                     HStack(spacing: 5) {
                         Image(systemName: "calendar")
                             .font(.caption)
@@ -50,7 +48,6 @@ struct ArticleCellView: View {
             
             Spacer()
             
-            // Chevron icon on the right
             Image(systemName: "chevron.right")
                 .foregroundColor(.gray)
         }

@@ -17,8 +17,7 @@ class DownloadedImageViewModel: ObservableObject {
     
     // MARK: - Published variables
     
-    @Published var image: UIImage?
-    @Published var showLoader: Bool = true
+    @Published var viewState: ViewState = .failure
 
     // MARK: - Private variables
     
@@ -26,10 +25,8 @@ class DownloadedImageViewModel: ObservableObject {
     private var urlStr: String?
     private var imageDownloadService: DownloadedImageServiceProtocol
     
-    init(image: UIImage? = nil,
-         urlStr: String? = nil,
+    init(urlStr: String,
          imageDownloadService: DownloadedImageServiceProtocol) {
-        self.image = image
         self.urlStr = urlStr
         self.imageDownloadService = imageDownloadService
     }
@@ -41,7 +38,10 @@ extension DownloadedImageViewModel {
         switch action {
             
         case .didAppear:
-            guard let urlStr, let url = URL(string: urlStr), image == nil else {return}
+            guard let urlStr, let url = URL(string: urlStr) else {
+                self.viewState = .failure
+                return
+            }
             imageDownloadService.downloadImage(url: url)
                 .sink { [weak self] completion in
                     
@@ -50,13 +50,19 @@ extension DownloadedImageViewModel {
                         break
                     case .failure(let error):
                         print(error.localizedDescription)
+                        self?.viewState = .failure
                     }
-                    self?.showLoader = false
                 } receiveValue: { [weak self] img in
-                    self?.image = img
-                    self?.showLoader = false
+                    self?.viewState = .success(img)
                 }
                 .store(in: &cancellables)
         }
+    }
+}
+
+extension DownloadedImageViewModel {
+    enum ViewState {
+        case success(UIImage)
+        case failure
     }
 }

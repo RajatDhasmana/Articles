@@ -73,16 +73,18 @@ enum ServiceError: Error {
     var errorDescription: String? {
         switch self {
         case .notAbleToDecode:
-            return "The URL is invalid."
+            return Constant.notAbleToDecodeError.rawValue
         case .noResponse:
-            return "The request failed."
+            return Constant.noResponseError.rawValue
         case .invalidUrl:
-            return "Failed to decode the response."
+            return Constant.invalidUrlError.rawValue
         case .unAuthorised:
-            return "Failed to decode the response."
+            return Constant.unAuthorisedError.rawValue
         case .unknown(let errorStr):
             return errorStr
         }
     }
+    
+    var shownError: String { Constant.shownError.rawValue }
 }
 

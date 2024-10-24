@@ -66,6 +66,8 @@ struct CustomNavBarModifier: ViewModifier {
             CustomNavBar(title: title)
             content
                 .padding(.top)
+            
+            Spacer()
         }
     }
 }

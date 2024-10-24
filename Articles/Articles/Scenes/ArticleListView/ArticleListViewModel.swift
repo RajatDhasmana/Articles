@@ -11,7 +11,6 @@ import Combine
 internal class ArticleListViewModel: ObservableObject {
         
     // MARK: - Published variables
-    @Published var articleList = [Article]()
     @Published var viewState: ViewState = .loading
     
     // MARK: - Private variables
@@ -27,43 +26,44 @@ internal class ArticleListViewModel: ObservableObject {
 extension ArticleListViewModel {
     
     func perform(action: ArticleListViewActions) {
-        
         switch action {
-            
         case .didAppear:
-            viewState = .loading
-            service.fetchArticles()
-                .sink { [weak self] completion in
-                    switch completion {
-                    case .finished:
-                        break
-                    case .failure(let _):
-                        self?.viewState = .noResponseReceived
-                    }
-                } receiveValue: { [weak self] articleResponse in
-                    self?.articleList = articleResponse.results
-
-                    if articleResponse.results.isEmpty {
-                        self?.viewState = .emptyData
-                    } else {
-                        self?.viewState = .dataReceived
-                    }
-                }
-                .store(in: &cancellables)
+            getArticleLis()
+        case .retry:
+            getArticleLis()
         }
+    }
+    
+    private func getArticleLis() {
+        viewState = .loading
+        service.fetchArticles()
+            .sink { [weak self] completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    let errorStateViewModel = ErrorStateViewModel(error: error) {
+                        self?.perform(action: .retry)
+                    }
+                    self?.viewState = .failure(errorStateViewModel: errorStateViewModel)
+                }
+            } receiveValue: { [weak self] articleResponse in
+                self?.viewState = .dataReceived(articleResponse.results)
+            }
+            .store(in: &cancellables)
     }
 }
 
 extension ArticleListViewModel {
     enum ViewState {
         case loading
-        case noResponseReceived
-        case dataReceived
-        case emptyData
+        case failure(errorStateViewModel: ErrorStateViewModel)
+        case dataReceived([Article])
     }
     
     enum ArticleListViewActions {
         case didAppear
+        case retry
     }
     
     struct Constant {

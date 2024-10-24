@@ -9,38 +9,41 @@ import SwiftUI
 
 struct ArticleListView: View {
     
-    @StateObject var viewmodel: ArticleListViewModel
-
+    @ObservedObject var viewModel: ArticleListViewModel
+    
     var body: some View {
         
-        ScrollView {
-            switch viewmodel.viewState {
+        Group {
+            switch viewModel.viewState {
             case .loading:
                     ProgressView()
                 
-            case .noResponseReceived, .emptyData:
-                    EmptyStateView()
+            case .failure(let errorStateViewModel):
+                ErrorStateView(viewModel: errorStateViewModel)
                 
-            case .dataReceived:
-                LazyVStack(spacing: 10) {
-                    ForEach(viewmodel.articleList, id: \.id) { article in
-                        NavigationLink(
-                            destination: ArticleDetailView(article: article)
-                        ) {
-                            ArticleCellView(article: article)
+            case .dataReceived(let articleList):
+                
+                ScrollView {
+                    LazyVStack(spacing: 10) {
+                        ForEach(articleList, id: \.id) { article in
+                            NavigationLink(
+                                destination: ArticleDetailView(viewModel: .init(article: article))
+                            ) {
+                                ArticleCellView(article: article)
+                            }
                         }
                     }
                 }
             }
         }
-        .withCustomNavBar(title: viewmodel.viewConstants.navTitle)
+        .withCustomNavBar(title: viewModel.viewConstants.navTitle)
         .onAppear(perform: {
-            viewmodel.perform(action: .didAppear)
+            viewModel.perform(action: .didAppear)
         })
-        .navigationBarBackButtonHidden()
+        .navigationBarBackButtonHidden(true)
     }
 }
 
 #Preview {
-    ArticleListView(viewmodel: ArticleListViewModel(service: ArticleListViewService.live))
+    ArticleListView(viewModel: ArticleListViewModel(service: ArticleListViewService.live))
 }
