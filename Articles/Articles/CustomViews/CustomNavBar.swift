@@ -10,7 +10,7 @@ import SwiftUI
 struct CustomNavBar: View {
     
     var title: String
-
+    
     var body: some View {
         ZStack {
             Color.green
@@ -60,7 +60,7 @@ struct CustomNavBar: View {
 
 struct CustomNavBarModifier: ViewModifier {
     var title: String
-
+    
     func body(content: Content) -> some View {
         VStack(spacing: 0) {
             CustomNavBar(title: title)

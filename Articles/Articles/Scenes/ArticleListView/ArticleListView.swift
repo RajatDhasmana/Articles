@@ -16,7 +16,7 @@ struct ArticleListView: View {
         Group {
             switch viewModel.viewState {
             case .loading:
-                    ProgressView()
+                ProgressView()
                 
             case .failure(let errorStateViewModel):
                 ErrorStateView(viewModel: errorStateViewModel)

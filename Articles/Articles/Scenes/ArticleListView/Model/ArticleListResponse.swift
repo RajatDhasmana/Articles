@@ -12,7 +12,7 @@ struct ArticleListResponse: Decodable {
     let status, copyright: String
     let numResults: Int
     let results: [Article]
-
+    
     enum CodingKeys: String, CodingKey {
         case status, copyright
         case numResults = "num_results"
@@ -28,11 +28,11 @@ struct Article: Decodable, Equatable {
     let byline: String
     let title, abstract: String
     let media: [Media]
-
+    
     var imageUrlStr: String? {
         return media.last?.mediaMetadata.last?.url
     }
-
+    
     enum CodingKeys: String, CodingKey {
         case url, id
         case publishedDate = "published_date"
@@ -47,7 +47,7 @@ struct Media: Decodable, Equatable {
     let caption, copyright: String
     let approvedForSyndication: Int
     let mediaMetadata: [MediaMetadatum]
-
+    
     enum CodingKeys: String, CodingKey {
         case type, subtype, caption, copyright
         case approvedForSyndication = "approved_for_syndication"

@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct ArticlesApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

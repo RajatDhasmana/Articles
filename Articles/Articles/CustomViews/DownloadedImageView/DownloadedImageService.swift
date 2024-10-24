@@ -22,7 +22,7 @@ struct DownloadedImageService: DownloadedImageServiceProtocol {
                 .setFailureType(to: ImageDownloadError.self)
                 .eraseToAnyPublisher()
         }
-
+        
         let urlRequest = URLRequest(url: url)
         
         return URLSession.shared.dataTaskPublisher(for: urlRequest)

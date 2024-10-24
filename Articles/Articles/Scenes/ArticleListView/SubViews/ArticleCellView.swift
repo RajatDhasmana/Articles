@@ -10,7 +10,7 @@ import SwiftUI
 struct ArticleCellView: View {
     
     private let article: Article
-
+    
     init(article: Article) {
         self.article = article
     }
@@ -20,7 +20,7 @@ struct ArticleCellView: View {
             DownloadedImageView(urlString: article.imageUrlStr ?? "")
                 .frame(width: 40, height: 40)
                 .clipShape(Circle())
-
+            
             VStack(alignment: .leading, spacing: 5) {
                 Text(article.title)
                     .font(.subheadline)

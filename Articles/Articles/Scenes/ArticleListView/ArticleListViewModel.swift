@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 internal class ArticleListViewModel: ObservableObject {
-        
+    
     // MARK: - Published variables
     @Published var viewState: ViewState = .loading
     
@@ -17,7 +17,7 @@ internal class ArticleListViewModel: ObservableObject {
     private let service: ArticleListViewServiceProtocol
     private var cancellables = Set<AnyCancellable>()
     var viewConstants = ViewConstant()
-
+    
     init(service: ArticleListViewServiceProtocol) {
         self.service = service
     }
@@ -73,7 +73,7 @@ extension ArticleListViewModel {
         case didAppear
         case retry
     }
-        
+    
     struct ViewConstant {
         let navTitle = "NY Times Most Popular"
     }
