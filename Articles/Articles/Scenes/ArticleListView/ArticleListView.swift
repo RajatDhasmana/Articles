@@ -21,6 +21,9 @@ struct ArticleListView: View {
             case .failure(let errorStateViewModel):
                 ErrorStateView(viewModel: errorStateViewModel)
                 
+            case .emptyData(let emptyStateViewModel):
+                EmptyStateView(viewModel: emptyStateViewModel)
+                
             case .dataReceived(let articleList):
                 
                 ScrollView {

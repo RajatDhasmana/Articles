@@ -48,7 +48,14 @@ extension ArticleListViewModel {
                     self?.viewState = .failure(errorStateViewModel: errorStateViewModel)
                 }
             } receiveValue: { [weak self] articleResponse in
-                self?.viewState = .dataReceived(articleResponse.results)
+                if articleResponse.results.isEmpty {
+                    let emptyStateViewModel = EmptyStateViewModel {
+                        self?.perform(action: .retry)
+                    }
+                    self?.viewState = .emptyData(emptyStateViewModel)
+                } else {
+                    self?.viewState = .dataReceived(articleResponse.results)
+                }
             }
             .store(in: &cancellables)
     }
@@ -59,6 +66,7 @@ extension ArticleListViewModel {
         case loading
         case failure(errorStateViewModel: ErrorStateViewModel)
         case dataReceived([Article])
+        case emptyData(EmptyStateViewModel)
     }
     
     enum ArticleListViewActions {

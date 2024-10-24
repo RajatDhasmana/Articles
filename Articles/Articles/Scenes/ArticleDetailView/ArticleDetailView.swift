@@ -14,7 +14,7 @@ struct ArticleDetailView: View {
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
-                VStack(spacing: 16) {
+                VStack(alignment: .leading, spacing: 16) {
                     
                     DownloadedImageView(urlString: viewModel.article.imageUrlStr ?? "")
                         .frame(width: geometry.size.width, height: geometry.size.height * 0.3)
@@ -22,8 +22,12 @@ struct ArticleDetailView: View {
                     
                     Text(viewModel.article.title)
                         .padding(.horizontal)
+                        .font(.headline)
+                    
                     Text(viewModel.article.abstract)
                         .padding(.horizontal)
+                        .multilineTextAlignment(.leading)
+                        .font(.subheadline)
 
                     HStack(spacing: 5) {
                         Image(systemName: "calendar")

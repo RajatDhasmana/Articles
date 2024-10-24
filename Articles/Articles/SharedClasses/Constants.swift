@@ -14,4 +14,6 @@ enum Constant: String {
     case notAbleToDecodeError = "Failed to decode the response."
     case unAuthorisedError = "Unauthorised Error"
     case shownError = "Network Failure, Please try again!"
+    case emptyDataViewText = "No Data Found!"
+
 }
