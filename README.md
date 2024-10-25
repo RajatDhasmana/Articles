@@ -82,10 +82,10 @@ Xcode 12.0+ or later
 
 ## Features
 
-MVVM Architecture: A clear separation of concerns to create testable and maintainable code.
-SwiftUI Views: Utilizes SwiftUI for building declarative, reactive UI.
-Combine Framework: Leverages Combine for reactive data binding and handling asynchronous events.
-Mockable Services: Easily mock the service layer for unit testing.
+MVVM Architecture: A clear separation of concerns to create testable and maintainable code.  
+SwiftUI Views: Utilizes SwiftUI for building declarative, reactive UI.  
+Combine Framework: Leverages Combine for reactive data binding and handling asynchronous events.  
+Mockable Services: Easily mock the service layer for unit testing.  
 
 
 ## Testing
